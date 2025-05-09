@@ -101,23 +101,36 @@
   <script>
     const hero = document.getElementById('hero');
     const backgrounds = [
-      'assets/images/hero/image1.png', // First image
-      'assets/images/hero/image2.png', // Second image
-      'assets/images/hero/image3.png', // Third image
-      'assets/images/hero/image4.png', // Fourth image
-      'assets/images/hero/image5.png', // Fifth image
-      'assets/images/hero/image6.png'  // Sixth image
+      'assets/images/hero/image1.png',
+      'assets/images/hero/image2.png',
+      'assets/images/hero/image3.png',
+      'assets/images/hero/image4.png',
+      'assets/images/hero/image5.png',
+      'assets/images/hero/image6.png'
     ];
     let index = 0;
 
     function rotateBackground() {
-      index = (index + 1) % backgrounds.length;
-      hero.style.transition = 'background-image 2s ease-in-out'; // Smooth transition
-      hero.style.backgroundImage = `url(${backgrounds[index]})`;
+      const nextIndex = (index + 1) % backgrounds.length;
+
+      // Set the ::before pseudo-element's background to the next image
+      hero.style.setProperty('--next-background', `url(${backgrounds[nextIndex]})`);
+
+      // Trigger the crossfade
+      hero.classList.add('crossfade');
+      setTimeout(() => {
+        // Update the main background after the crossfade
+        hero.style.backgroundImage = `url(${backgrounds[nextIndex]})`;
+        hero.classList.remove('crossfade');
+        index = nextIndex;
+      }, 2000); // Match the transition duration
     }
 
-    rotateBackground();
-    setInterval(rotateBackground, 10000); // Rotate every 10 seconds
+    // Initialize the first background
+    hero.style.backgroundImage = `url(${backgrounds[index]})`;
+
+    // Rotate every 10 seconds
+    setInterval(rotateBackground, 10000);
 
     function toggleMenu() {
       const nav = document.getElementById("main-nav");
