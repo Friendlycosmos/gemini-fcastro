@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friendly Cosmos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="starfield-wrapper"></div>
+
+  <nav>
+    <div class="nav-header">
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <!-- Removed the theme toggle button -->
+    </div>
+    <ul id="main-nav">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header id="hero">
+    <img src="assets/images/inline_image.png" alt="Friendly Cosmos Logo" class="logo-image">
+    <h1>Friendly Cosmos</h1>
+    <p>A cozy corner of the universe for stargazers and astro friends.</p>
+  </header>
+
+  <main>
+    <section class="dashboard">
+      <div class="dashboard-container">
+        <h2>Sky Briefing</h2>
+        <div class="dashboard-boxes">
+          <div class="dashboard-box">
+            <h3>Current Moon Phase</h3>
+            <p>Waxing Gibbous · 78% visible · Best seen 9:47 PM</p>
+          </div>
+          <div class="dashboard-box">
+            <h3>Tonight’s Targets</h3>
+            <p>M42 (Orion Nebula), Jupiter, Pleiades</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section-divider"></div> <!-- Add divider -->
+
+    <section id="shop" class="section">
+      <h2>Featured Merch</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://www.goodfreephotos.com/cache/astrophotography/great-stars-from-hubble_800.jpg" alt="Nebula Tee">
+          <h3>Nebula Tee</h3>
+          <p>$22.00</p>
+        </div>
+        <div class="product">
+          <img src="https://www.goodfreephotos.com/cache/astrophotography/large-magellanic-clouds-in-space_800.jpg" alt="Star Map Poster">
+          <h3>Star Map Poster</h3>
+          <p>$18.00</p>
+        </div>
+        <div class="product">
+          <img src="https://www.goodfreephotos.com/cache/astrophotography/swirling-galaxies_800.jpg" alt="Galaxy Stickers">
+          <h3>Galaxy Stickers</h3>
+          <p>$7.00</p>
+        </div>
+      </div>
+    </section>
+    <div class="section-divider"></div> <!-- Add divider -->
+
+    <section id="community" class="section">
+      <h2>About the Group</h2>
+      <p>Friendly Cosmos is a welcoming astrophotography community. We check in, share images, and encourage each other to capture the cosmos.</p>
+      <p>Join us on <a href="#">Discord</a> or follow our captures on <a href="#">Instagram</a>.</p>
+    </section>
+    <div class="section-divider"></div> <!-- Add divider -->
+
+    <section id="contact" class="section">
+      <h2>Contact Us</h2>
+      <p>Email: <a href="mailto:info@friendlycosmos.com">info@friendlycosmos.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Friendly Cosmos. All rights reserved.
+
+    <div class="social-footer" style="display: flex; justify-content: center; gap: 1.5rem; padding-top: 1rem;">
+      <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
+        <!-- Instagram SVG -->
+      </a>
+      <a href="#" aria-label="Twitter" target="_blank" rel="noopener">
+        <!-- Twitter SVG -->
+      </a>
+      <a href="#" aria-label="Discord" target="_blank" rel="noopener">
+        <!-- Discord SVG -->
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const hero = document.getElementById('hero');
+    const backgrounds = [
+      'assets/images/hero/image1.png', // First image
+      'assets/images/hero/image2.png', // Second image
+      'assets/images/hero/image3.png', // Third image
+      'assets/images/hero/image4.png', // Fourth image
+      'assets/images/hero/image5.png', // Fifth image
+      'assets/images/hero/image6.png'  // Sixth image
+    ];
+    let index = 0;
+
+    function rotateBackground() {
+      index = (index + 1) % backgrounds.length;
+      hero.style.transition = 'background-image 2s ease-in-out'; // Smooth transition
+      hero.style.backgroundImage = `url(${backgrounds[index]})`;
+    }
+
+    rotateBackground();
+    setInterval(rotateBackground, 10000); // Rotate every 10 seconds
+
+    function toggleMenu() {
+      const nav = document.getElementById("main-nav");
+      nav.classList.toggle("show");
+    }
+
+    function setHeroHeight() {
+      const hero = document.getElementById('hero');
+      if (hero) {
+        const h = hero.getBoundingClientRect().height + 'px';
+        document.documentElement.style.setProperty('--hero-height', h);
+        document.querySelector('.starfield-wrapper').style.top = h;
+        document.querySelector('.starfield-wrapper').style.height = 'calc(100vh - ' + h + ')';
+      }
+    }
+    window.addEventListener('load', setHeroHeight);
+    window.addEventListener('resize', setHeroHeight);
+  </script>
+</body>
+</html>

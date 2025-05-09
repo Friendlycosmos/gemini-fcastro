@@ -1,0 +1,635 @@
+/* Base Body Style */
+body {
+  position: relative;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Exo 2', sans-serif; /* Ensure consistent font across the site */
+  line-height: 1.6; /* Improve readability */
+  background: url('../images/background_image.png') center center / 125% 125% no-repeat fixed; /* Adjust background size */
+  animation: smooth-pan 250s infinite linear; /* Further slow down the panning animation */
+  color: white; /* Ensure text remains readable */
+}
+
+/* Smooth Panning Animation */
+@keyframes smooth-pan {
+  0% {
+    background-position: center center;
+  }
+  25% {
+    background-position: top left;
+  }
+  50% {
+    background-position: bottom right;
+  }
+  75% {
+    background-position: top right;
+  }
+  100% {
+    background-position: bottom left;
+  }
+}
+
+/* Starfield Background Animation */
+.starfield-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url('images/starfield.png') center center / cover no-repeat;
+  animation: star-pan 120s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Star Pan Animation */
+@keyframes star-pan {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Navigation Bar Styling */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav ul {
+  display: flex; /* Ensure links are displayed horizontally */
+  list-style: none; /* Remove default list styling */
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 15px; /* Add spacing between links */
+}
+
+nav a {
+  color: rgba(255, 255, 255, 0.85); /* Adjust link color for better contrast */
+  text-decoration: none;
+  font-size: 1rem;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: bold; /* Match font weight */
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffcc00; /* Highlight link on hover */
+}
+
+/* Navigation Link Colors */
+#main-nav li:nth-child(1) a {
+  color: rgba(70, 130, 180, 0.8); /* Subtle shade of blue */
+}
+
+#main-nav li:nth-child(2) a {
+  color: rgba(60, 179, 113, 0.8); /* Subtle shade of green */
+}
+
+#main-nav li:nth-child(3) a {
+  color: rgba(255, 165, 0, 0.8); /* Subtle shade of orange */
+}
+
+#main-nav li:nth-child(4) a {
+  color: rgba(255, 223, 0, 0.8); /* Subtle shade of yellow */
+}
+
+/* Navigation Link Hover Effect */
+#main-nav li a:hover {
+  text-decoration: underline; /* Add underline on hover for better visibility */
+}
+
+#main-nav li:nth-child(1) a:hover {
+  background-color: rgba(70, 130, 180, 0.2); /* Matching blue highlight */
+  border-radius: 5px; /* Add rounded corners */
+}
+
+#main-nav li:nth-child(2) a:hover {
+  background-color: rgba(60, 179, 113, 0.2); /* Matching green highlight */
+  border-radius: 5px; /* Add rounded corners */
+}
+
+#main-nav li:nth-child(3) a:hover {
+  background-color: rgba(255, 165, 0, 0.2); /* Matching orange highlight */
+  border-radius: 5px; /* Add rounded corners */
+}
+
+#main-nav li:nth-child(4) a:hover {
+  background-color: rgba(255, 223, 0, 0.2); /* Matching yellow highlight */
+  border-radius: 5px; /* Add rounded corners */
+}
+
+/* Navigation Link Styling */
+#main-nav li a {
+  text-decoration: none !important; /* Forcefully remove any underline */
+  border-bottom: none !important; /* Ensure no static border is applied */
+  position: relative; /* Ensure proper positioning for the pseudo-element */
+  display: inline-block; /* Ensure proper alignment */
+  padding-bottom: 5px; /* Add space for the moving underscore effect */
+}
+
+/* Moving Underscore Effect */
+#main-nav li a::after {
+  content: ''; /* Create the underscore */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0; /* Start with no width */
+  height: 2px; /* Thickness of the underscore */
+  background-color: currentColor; /* Match the text color */
+  transition: width 0.3s ease-in-out; /* Smooth transition for the effect */
+}
+
+/* Hover Effect */
+#main-nav li a:hover::after {
+  width: 100%; /* Expand the underscore */
+}
+
+/* Mobile Menu Toggle */
+nav .hamburger {
+  display: none; /* Hide hamburger menu by default */
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none; /* Hide links by default on mobile */
+    flex-direction: column; /* Stack links vertically */
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9); /* Darker background for mobile menu */
+    padding: 10px 0;
+  }
+
+  nav ul.show {
+    display: flex; /* Show links when toggled */
+  }
+
+  nav .hamburger {
+    display: block; /* Show hamburger menu on mobile */
+  }
+
+  nav li {
+    margin: 10px 0; /* Add spacing between links in mobile view */
+  }
+}
+
+/* Hero Section Refinement */
+#hero {
+  position: relative;
+  z-index: 1;
+  background: url('...') center center / cover no-repeat; /* Background covers the entire hero section */
+  padding: 20px; /* Add padding inside the border */
+  text-align: center;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Add glow to text */
+  min-height: 30vh; /* Minimum height is 30% of the viewport height */
+  background-size: cover; /* Ensure the background covers the entire hero section */
+  background-position: center; /* Center the background image */
+  transition: background-image 2s ease-in-out; /* Smooth transition for morphing effect */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
+}
+
+@media (max-width: 768px) {
+  #hero {
+    padding: 15px;
+    text-align: center;
+  }
+
+  #hero .logo-image {
+    max-width: 200px; /* Adjust logo size for smaller screens */
+  }
+
+  #hero h1 {
+    font-size: 2.5rem; /* Adjust heading size */
+  }
+
+  #hero p {
+    font-size: 1.2rem; /* Adjust paragraph size */
+  }
+}
+
+/* Hero Section Logo Refinement */
+#hero .logo-image {
+  max-width: 260px; /* Further increase logo size */
+  margin-bottom: 20px; /* Maintain spacing below the logo */
+  filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8)); /* Add teal glow to the logo */
+}
+
+/* Hero Section Text Refinement */
+#hero h1, #hero p {
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Add teal glow to the text */
+  margin-top: 5px; /* Move text closer to the logo */
+}
+
+#hero h1 {
+  font-size: 3rem; /* Increase font size */
+}
+
+#hero p {
+  font-size: 1.5rem; /* Increase font size */
+  margin-bottom: 30px;
+}
+
+/* Starfield Background Animation */
+.starfield-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url('images/starfield.png') center center / cover no-repeat;
+  animation: star-pan 120s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Star Pan Animation */
+@keyframes star-pan {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Background Image Scaling and Positioning for All Sections */
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Responsive Planet and Moon Scaling */
+#planet {
+  width: 15vw;
+  max-width: 200px;
+}
+
+#moon {
+  width: 12vw;
+  max-width: 150px;
+}
+
+/* Responsive scaling for 4K and larger screens */
+@media (min-width: 2560px) {
+  .hero-section {
+      height: 80vh;
+  }
+  #planet {
+      width: 10vw;
+  }
+  #moon {
+      width: 8vw;
+  }
+}
+
+/* Featured Merch Section */
+.merch-card {
+  display: inline-block; /* Ensure cards are inline */
+  margin: 20px; /* Increase spacing between cards */
+  width: calc(33.333% - 40px); /* Adjust width for better alignment */
+  max-width: 320px; /* Slightly increase max width */
+  background-color: rgba(0, 0, 0, 0.6); /* Darker background */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Add border */
+  border-radius: 12px; /* Slightly rounder corners */
+  overflow: hidden; /* Clip overflowing content */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhance shadow for depth */
+  text-align: center; /* Center-align content */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover effect */
+  color: white;
+}
+
+.merch-card:hover {
+  transform: translateY(-5px); /* Lift card on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+}
+
+/* Merch Card Image Refinement */
+.merch-card img {
+  object-fit: cover;
+  width: 100%;
+  height: 180px; /* Adjust image height */
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2); /* Enhance border */
+}
+
+/* Merch Card Text Refinement */
+.merch-card h3 {
+  margin: 10px 0; /* Adjust spacing */
+  font-size: 1.5rem; /* Increase font size */
+}
+
+.merch-card p {
+  font-size: 1.1rem; /* Adjust font size */
+}
+
+/* Responsive Merch Card Layout Refinement */
+@media (max-width: 768px) {
+  .merch-card {
+    width: calc(50% - 20px); /* Adjust width for 2 cards per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .merch-card {
+    width: 100%; /* Full width for 1 card per row */
+  }
+}
+
+/* Product Section Refinement */
+.products {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping for responsiveness */
+  justify-content: center; /* Center-align products */
+  gap: 20px; /* Ensure consistent spacing between products */
+  margin-top: 20px; /* Add spacing above products */
+  max-width: 1000px; /* Ensure product grid matches the section width */
+  margin: 0 auto; /* Center the product grid */
+}
+
+.product {
+  background-color: rgba(0, 0, 0, 0.6); /* Darker background */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Adjust border color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+  overflow: hidden; /* Clip overflowing content */
+  text-align: center; /* Center-align content */
+  width: calc(33.333% - 40px); /* Responsive width for 3 products per row */
+  max-width: 300px; /* Limit max width */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Ensure smooth hover effects */
+}
+
+.product:hover {
+  transform: translateY(-5px); /* Lift card on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+  border-color: #ffcc00; /* Highlight border on hover */
+}
+
+.product img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px; /* Set fixed height for uniformity */
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2); /* Add border */
+}
+
+.product h3 {
+  margin: 15px 0 10px; /* Adjust spacing */
+  font-size: 1.3rem; /* Slightly increase font size */
+  color: #ffcc00; /* Match title color */
+}
+
+.product p {
+  font-size: 1rem; /* Slightly increase font size */
+  color: rgba(255, 255, 255, 0.85); /* Enhance text contrast */
+  margin: 0 15px 20px; /* Adjust spacing */
+}
+
+/* Responsive Product Layout */
+@media (max-width: 768px) {
+  .product {
+    width: calc(50% - 20px); /* Adjust width for 2 products per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    width: 100%; /* Full width for 1 product per row */
+  }
+}
+
+/* Info Section Refinement */
+.info-section, .contact-section {
+  margin: 15px 0;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background */
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+  text-align: center;
+}
+
+.info-section p, .contact-section p {
+  font-size: 1.2rem; /* Adjust font size */
+}
+
+/* Dashboard Section Refinement */
+.dashboard {
+  max-width: 1000px; /* Match the width of the Featured Merch section */
+  margin: 0 auto; /* Center the dashboard section */
+  margin-top: 30px; /* Ensure consistent spacing above the section */
+  padding: 40px 20px; /* Add padding for spacing */
+  background-color: rgba(10, 25, 50, 0.8); /* Space-themed shade of blue with transparency */
+  border: 2px solid rgba(70, 130, 180, 0.6); /* Subtle shade of blue */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
+}
+
+.dashboard-container {
+  max-width: 1000px; /* Match the width of the Featured Merch section */
+  margin: 0 auto; /* Center the container */
+  text-align: center; /* Center-align the title */
+}
+
+.dashboard h2 {
+  font-size: 2rem; /* Match the size of the Featured Merch title */
+  margin-bottom: 20px; /* Add spacing below the title */
+  color: rgba(70, 130, 180, 0.8); /* Match border color (blue) */
+}
+
+.dashboard-boxes {
+  display: flex;
+  justify-content: space-between; /* Space out the boxes evenly */
+  gap: 20px; /* Add spacing between boxes */
+}
+
+.dashboard-box {
+  flex: 1; /* Ensure boxes take equal width */
+  padding: 20px; /* Add consistent padding */
+  background-color: rgba(0, 0, 0, 0.8); /* Subtle background for visibility */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Add subtle border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+  text-align: center; /* Align text in the center */
+  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  min-height: 150px; /* Ensure consistent box height */
+}
+
+.dashboard-box h3 {
+  font-size: 1.4rem; /* Adjust font size */
+  color: rgba(70, 130, 180, 0.8); /* Match border color (blue) */
+  margin-bottom: 10px; /* Add spacing below the title */
+}
+
+.dashboard-box p {
+  font-size: 1rem; /* Adjust font size */
+  color: rgba(255, 255, 255, 0.85); /* Enhance text contrast */
+}
+
+/* Featured Merch Section */
+#shop {
+  background-color: rgba(10, 25, 50, 0.8); /* Space-themed shade of blue with transparency */
+  border: 2px solid rgba(60, 179, 113, 0.6); /* Subtle shade of green */
+}
+
+#shop h2 {
+  color: rgba(60, 179, 113, 0.8); /* Match border color (green) */
+}
+
+#shop .product h3 {
+  color: rgba(60, 179, 113, 0.8); /* Match border color (green) */
+}
+
+/* About the Group Section */
+#community {
+  background-color: rgba(10, 25, 50, 0.8); /* Space-themed shade of blue with transparency */
+  border: 2px solid rgba(255, 165, 0, 0.6); /* Subtle shade of orange */
+}
+
+#community h2 {
+  color: rgba(255, 165, 0, 0.8); /* Match border color (orange) */
+}
+
+#community p {
+  color: rgba(255, 165, 0, 0.8); /* Match border color (orange) */
+}
+
+/* Contact Us Section */
+#contact {
+  background-color: rgba(10, 25, 50, 0.8); /* Space-themed shade of blue with transparency */
+  border: 2px solid rgba(255, 223, 0, 0.6); /* Subtle shade of yellow */
+}
+
+#contact h2 {
+  color: rgba(255, 223, 0, 0.8); /* Match border color (yellow) */
+}
+
+#contact p {
+  color: rgba(255, 223, 0, 0.8); /* Match border color (yellow) */
+}
+
+/* Footer Styling */
+footer {
+  background-color: rgba(0, 0, 0, 0.9); /* Darker background */
+  color: rgba(255, 255, 255, 0.85); /* Adjust text color */
+  text-align: center;
+  padding: 30px 0; /* Add consistent padding */
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1rem; /* Slightly larger font size */
+  margin-top: 30px; /* Add spacing above footer */
+}
+
+footer .social-footer a {
+  color: rgba(255, 255, 255, 0.85); /* Match icon color */
+  font-size: 1.8rem; /* Increase icon size */
+  transition: color 0.3s ease;
+  margin: 0 10px; /* Add consistent spacing between icons */
+}
+
+footer .social-footer a:hover {
+  color: #ffcc00; /* Highlight icons on hover */
+}
+
+@media (max-width: 768px) {
+  footer {
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+  }
+
+  footer .social-footer a {
+    font-size: 1.5rem; /* Adjust icon size */
+  }
+}
+
+/* Section Spacing */
+.section {
+  padding: 50px 20px; /* Add consistent padding for sections */
+  margin: 30px auto; /* Ensure consistent spacing between sections */
+  max-width: 1000px; /* Reduce maximum width for better alignment */
+  text-align: center;
+  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
+  border: 1px solid rgba(255, 204, 0, 0.6); /* Add warm yellow border */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Enhance shadow for depth */
+  padding: 30px; /* Maintain padding inside the box */
+  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ffcc00; /* Highlight section titles */
+}
+
+.section p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85); /* Enhance text contrast */
+}
+
+.section a {
+  color: #ffcc00; /* Highlight links */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease;
+}
+
+.section a:hover {
+  color: rgba(255, 255, 255, 0.85); /* Change link color on hover */
+}
+
+/* Microinteractions: Button Hover Effect */
+button, .btn {
+  background-color: #ffcc00; /* Default button color */
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: 'Exo 2', sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: #ffd633; /* Slightly lighter shade on hover */
+  transform: translateY(-3px); /* Lift button on hover */
+}
+
+/* Theming: Light/Dark Mode Toggle */
+body.light-mode {
+  background: #f4f4f4; /* Light background */
+  color: #333; /* Dark text */
+}
+
+body.light-mode nav {
+  background-color: rgba(255, 255, 255, 0.9); /* Light navbar */
+}
+
+body.light-mode .section {
+  background-color: rgba(255, 255, 255, 0.9); /* Light section background */
+  color: #333; /* Dark text */
+}
+
+body.light-mode a {
+  color: #007bff; /* Blue links */
+}
+
+body.light-mode a:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
+
+/* Content Hierarchy: Section Dividers */
+.section-divider {
+  width: 80%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle divider */
+  margin: 30px auto;
+}
