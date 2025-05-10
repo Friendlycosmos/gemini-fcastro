@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Friendly Cosmos</title>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -13,7 +13,6 @@
   <nav>
     <div class="nav-header">
       <div class="hamburger" onclick="toggleMenu()">☰</div>
-      <!-- Removed the theme toggle button -->
     </div>
     <ul id="main-nav">
       <li><a href="#shop">Shop</a></li>
@@ -45,7 +44,7 @@
         </div>
       </div>
     </section>
-    <div class="section-divider"></div> <!-- Add divider -->
+    <div class="section-divider"></div>
 
     <section id="shop" class="section">
       <h2>Featured Merch</h2>
@@ -67,7 +66,7 @@
         </div>
       </div>
     </section>
-    <div class="section-divider"></div> <!-- Add divider -->
+    <div class="section-divider"></div>
 
     <section id="community" class="section">
       <h2>About the Group</h2>
@@ -81,7 +80,7 @@
       No matter your skill level, you're part of the galaxy of creators illuminating the night sky. Come for the stars—stay for the community.</p>
       <p>Join us on <a href="https://discord.gg/friendlycosmos" target="_blank" rel="noopener">Discord</a> or follow our captures on <a href="https://www.instagram.com/friendly.cosmos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Instagram</a>.</p>
     </section>
-    <div class="section-divider"></div> <!-- Add divider -->
+    <div class="section-divider"></div>
 
     <section id="contact" class="section">
       <h2>Contact Us</h2>
@@ -91,17 +90,12 @@
 
   <footer>
     <div class="social-footer" style="display: flex; justify-content: center; gap: 1.5rem; padding-top: 1rem;">
-      <!-- Instagram Icon -->
       <a href="https://www.instagram.com/friendly.cosmos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram" target="_blank" rel="noopener">
         <img src="assets/images/instagram logo.png" alt="Instagram Logo" width="32" height="32">
       </a>
-
-      <!-- Twitter (X) Icon -->
       <a href="https://x.com/FriendlyCosmos?t=7iL3ILoE5AX7C60vIdta4Q&s=08" aria-label="Twitter" target="_blank" rel="noopener">
         <img src="assets/images/X logo.png" alt="Twitter Logo" width="32" height="32">
       </a>
-
-      <!-- Discord Icon -->
       <a href="https://discord.gg/friendlycosmos" aria-label="Discord" target="_blank" rel="noopener">
         <img src="assets/images/discord logo.png" alt="Discord Logo" width="32" height="32">
       </a>
@@ -123,24 +117,16 @@
 
     function rotateBackground() {
       const nextIndex = (index + 1) % backgrounds.length;
-
-      // Set the ::before pseudo-element's background to the next image
       hero.style.setProperty('--next-background', `url(${backgrounds[nextIndex]})`);
-
-      // Trigger the crossfade
       hero.classList.add('crossfade');
       setTimeout(() => {
-        // Update the main background after the crossfade
         hero.style.backgroundImage = `url(${backgrounds[nextIndex]})`;
         hero.classList.remove('crossfade');
         index = nextIndex;
-      }, 2000); // Match the transition duration
+      }, 2000);
     }
 
-    // Initialize the first background
     hero.style.backgroundImage = `url(${backgrounds[index]})`;
-
-    // Rotate every 10 seconds
     setInterval(rotateBackground, 10000);
 
     function toggleMenu() {
