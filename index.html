@@ -46,13 +46,50 @@
             <button id="next-day">Next Day</button>
           </div>
           <div class="dashboard-box">
-            <h3>Tonight’s Targets</h3>
-            <p>M42 (Orion Nebula), Jupiter, Pleiades</p>
+            <h3>Set Your Location</h3>
+            <div class="location-input">
+              <label for="latitude">Latitude:</label>
+              <input type="number" id="latitude" placeholder="Enter latitude" step="0.0001" />
+              <label for="longitude">Longitude:</label>
+              <input type="number" id="longitude" placeholder="Enter longitude" step="0.0001" />
+              <button id="update-location">Update Location</button>
+              <button id="detect-location">Detect My Location</button>
+            </div>
+          </div>
+          <div class="dashboard-box">
+            <h3>Weather Forecast</h3>
+            <div id="weather-data" class="weather-data">
+              <p>Loading weather data...</p>
+            </div>
+            <div id="weather-forecast" class="weather-forecast">
+              <p>Loading extended forecast...</p>
+            </div>
+            <div id="weather-details" class="weather-details" style="display: none;">
+              <h4>Detailed Weather Information</h4>
+              <div id="detailed-weather-content">
+                <p>Select a day to view detailed information.</p>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-box">
+            <h3>Astronomical Events</h3>
+            <div id="astro-events">
+              <p>Loading astronomical events...</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <div class="section-divider"></div>
+
+    <div id="hourly-forecast-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span id="close-hourly-forecast" class="close">&times;</span>
+        <h4>Hourly Forecast</h4>
+        <div id="hourly-forecast-content">
+          <p>Select a day to view hourly details.</p>
+        </div>
+      </div>
+    </div>
 
     <section id="shop" class="section">
       <h2>Featured Merch</h2>
@@ -74,7 +111,6 @@
         </div>
       </div>
     </section>
-    <div class="section-divider"></div>
 
     <section id="community" class="section">
       <h2>About the Group</h2>
@@ -88,7 +124,6 @@
       No matter your skill level, you're part of the galaxy of creators illuminating the night sky. Come for the stars—stay for the community.</p>
       <p>Join us on <a href="https://discord.gg/friendlycosmos" target="_blank" rel="noopener">Discord</a> or follow our captures on <a href="https://www.instagram.com/friendly.cosmos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Instagram</a>.</p>
     </section>
-    <div class="section-divider"></div>
 
     <section id="contact" class="section">
       <h2>Contact Us</h2>
@@ -111,6 +146,7 @@
     <p>&copy; 2025 Friendly Cosmos. All rights reserved.</p>
   </footer>
 
+  <script src="assets/js/suncalc.js" defer></script>
   <script>
     const hero = document.getElementById('hero');
     const backgrounds = [
@@ -122,18 +158,16 @@
       'assets/images/hero/image6.png'
     ];
     let index = 0;
-
     function rotateBackground() {
       const nextIndex = (index + 1) % backgrounds.length;
       hero.style.setProperty('--next-background', `url(${backgrounds[nextIndex]})`);
       hero.classList.add('crossfade');
       setTimeout(() => {
-        hero.style.backgroundImage = `url(${backgrounds[nextIndex]})`;
+        hero.style.backgroundImage = `url(${backgrounds[nextIndex]})`);
         hero.classList.remove('crossfade');
         index = nextIndex;
       }, 2000);
     }
-
     hero.style.backgroundImage = `url(${backgrounds[index]})`;
     setInterval(rotateBackground, 10000);
 
@@ -154,7 +188,8 @@
     window.addEventListener('load', setHeroHeight);
     window.addEventListener('resize', setHeroHeight);
   </script>
-  <script src="assets/js/suncalc.js" defer></script>
   <script src="assets/js/moon-phase.js" defer></script>
+  <script src="assets/js/weather.js" defer></script>
+  <script src="assets/js/astro-events.js" defer></script>
 </body>
 </html>

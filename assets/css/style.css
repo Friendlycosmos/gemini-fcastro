@@ -708,3 +708,116 @@ body.light-mode a:hover {
   background-color: rgba(255, 255, 255, 0.2); /* Subtle divider */
   margin: 30px auto;
 }
+
+/* Weather Input and Display Styling */
+.weather-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.weather-input input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.weather-input button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.weather-input button:hover {
+  background-color: #0056b3;
+}
+
+.weather-data {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.weather-data p {
+  margin: 0.5rem 0;
+}
+
+.weather-data .error {
+  color: red;
+}
+
+.weather-widget {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Weather Data Styling */
+#weather-data {
+  color: #000 !important; /* Force text color to black for visibility */
+  background-color: #f9f9f9; /* Light background for contrast */
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#weather-data p {
+  margin: 0.5rem 0;
+  color: inherit; /* Ensure paragraphs inherit the forced text color */
+}
+
+/* Astronomical Events Section */
+#astro-events {
+  color: #000 !important; /* Force text color to black for visibility */
+  background-color: #f9f9f9; /* Light background for contrast */
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#astro-events p {
+  margin: 0.5rem 0;
+  color: inherit; /* Ensure paragraphs inherit the forced text color */
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: #f9f9f9; /* Light background for contrast */
+  color: #000; /* Set text color to black for visibility */
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 600px;
+}
+
+.modal-content {
+  position: relative;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#hourly-forecast-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#hourly-forecast-content p {
+  margin: 0.5rem 0;
+  color: inherit; /* Ensure paragraphs inherit the forced text color */
+}
