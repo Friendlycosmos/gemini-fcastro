@@ -316,6 +316,19 @@ nav .hamburger {
   max-width: 150px;
 }
 
+/* Center Moon Phase Image */
+.moon-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0; /* Add spacing above and below the image */
+}
+
+.moon-image-container img {
+  max-width: 150px; /* Adjust the size of the image */
+  height: auto;
+}
+
 /* Responsive scaling for 4K and larger screens */
 @media (min-width: 2560px) {
   .hero-section {

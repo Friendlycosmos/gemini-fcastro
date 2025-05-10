@@ -35,7 +35,15 @@
         <div class="dashboard-boxes">
           <div class="dashboard-box">
             <h3>Current Moon Phase</h3>
-            <p>Waxing Gibbous · 78% visible · Best seen 9:47 PM</p>
+            <div class="moon-image-container">
+              <img id="moon-image" src="assets/images/moon_phases/default.png" alt="Moon Phase">
+            </div>
+            <p id="moon-date">Date: Loading...</p>
+            <p id="moon-phase">Phase: Loading...</p>
+            <p id="moon-illumination">Illumination: Loading...</p>
+            <p id="moon-type">Type: Loading...</p>
+            <button id="prev-day">Previous Day</button>
+            <button id="next-day">Next Day</button>
           </div>
           <div class="dashboard-box">
             <h3>Tonight’s Targets</h3>
@@ -146,5 +154,7 @@
     window.addEventListener('load', setHeroHeight);
     window.addEventListener('resize', setHeroHeight);
   </script>
+  <script src="assets/js/suncalc.js" defer></script>
+  <script src="assets/js/moon-phase.js" defer></script>
 </body>
 </html>
