@@ -241,12 +241,14 @@ nav .hamburger {
   max-width: 260px; /* Further increase logo size */
   margin-bottom: 20px; /* Maintain spacing below the logo */
   filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8)); /* Add teal glow to the logo */
+  animation: pulse-glow-teal 5s infinite; /* Use teal pulsing animation */
 }
 
 /* Hero Section Text Refinement */
 #hero h1, #hero p {
   text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Add teal glow to the text */
   margin-top: 5px; /* Move text closer to the logo */
+  animation: pulse-glow-teal 5s infinite; /* Use teal pulsing animation */
 }
 
 #hero h1 {
@@ -256,6 +258,22 @@ nav .hamburger {
 #hero p {
   font-size: 1.5rem; /* Increase font size */
   margin-bottom: 30px;
+}
+
+/* Pulsing Glow Animation with Teal */
+@keyframes pulse-glow-teal {
+  0% {
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8));
+  }
+  50% {
+    text-shadow: 0 0 25px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.8);
+    filter: drop-shadow(0 0 25px rgba(0, 255, 255, 1));
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8));
+  }
 }
 
 /* Starfield Background Animation */
@@ -522,16 +540,23 @@ nav .hamburger {
 
 /* Contact Us Section */
 #contact {
-  background-color: rgba(10, 25, 50, 0.8); /* Space-themed shade of blue with transparency */
-  border: 2px solid rgba(255, 223, 0, 0.6); /* Subtle shade of yellow */
+  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
+  border: 1px solid rgba(255, 204, 0, 0.6); /* Add warm yellow border */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Enhance shadow for depth */
+  padding: 30px; /* Maintain padding inside the box */
+  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  text-align: center;
 }
 
-#contact h2 {
-  color: rgba(255, 223, 0, 0.8); /* Match border color (yellow) */
+#contact a {
+  color: #ffcc00; /* Highlight links */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease;
 }
 
-#contact p {
-  color: rgba(255, 223, 0, 0.8); /* Match border color (yellow) */
+#contact a:hover {
+  color: rgba(255, 255, 255, 0.85); /* Change link color on hover */
 }
 
 /* Footer Styling */
@@ -539,7 +564,7 @@ footer {
   background-color: rgba(0, 0, 0, 0.9); /* Darker background */
   color: rgba(255, 255, 255, 0.85); /* Adjust text color */
   text-align: center;
-  padding: 30px 0; /* Add consistent padding */
+  padding: 25px 0; /* Increase padding for better spacing */
   font-family: 'Exo 2', sans-serif;
   font-size: 1rem; /* Slightly larger font size */
   margin-top: 30px; /* Add spacing above footer */
@@ -554,6 +579,16 @@ footer .social-footer a {
 
 footer .social-footer a:hover {
   color: #ffcc00; /* Highlight icons on hover */
+}
+
+/* Social Media Icon Hover Effects */
+.social-footer a img {
+  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effect */
+}
+
+.social-footer a:hover img {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+  filter: brightness(1.5); /* Brighten the icon on hover */
 }
 
 @media (max-width: 768px) {
@@ -599,6 +634,17 @@ footer .social-footer a:hover {
 
 .section a:hover {
   color: rgba(255, 255, 255, 0.85); /* Change link color on hover */
+}
+
+/* General Link Styling */
+a {
+  color: rgba(255, 255, 255, 0.85); /* Default link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ffcc00; /* Highlight link on hover */
 }
 
 /* Microinteractions: Button Hover Effect */
