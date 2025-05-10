@@ -475,10 +475,10 @@ nav .hamburger {
   text-align: center; /* Center-align the title */
 }
 
-.dashboard h2 {
+.dashboard-container h2 {
   font-size: 2rem; /* Match the size of the Featured Merch title */
   margin-bottom: 20px; /* Add spacing below the title */
-  color: rgba(70, 130, 180, 0.8); /* Match border color (blue) */
+  color: #87CEEB; /* Set to a lighter shade of blue */
 }
 
 .dashboard-boxes {
