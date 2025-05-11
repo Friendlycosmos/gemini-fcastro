@@ -39,53 +39,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('shooting-star-container');
     if (!container) return;
 
-    const hero = container.parentElement;
-    const heroRect = hero.getBoundingClientRect();
+    const heroRect = container.parentElement.getBoundingClientRect();
     const width = heroRect.width;
     const height = heroRect.height;
 
     const star = document.createElement('div');
     const isLTR = Math.random() > 0.5;
 
-    let startX, startY, endX, endY, angle;
+    let startX, startY, endX, endY;
     if (isLTR) {
-      // Left to right: start at left edge, end at right edge, random Y for both
       startX = 0;
       endX = width;
-      startY = Math.random() * height;
-      endY = Math.random() * height;
-      angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
-      star.className = 'shooting-star ltr';
-      star.style.left = `${startX}px`;
-      star.style.top = `${startY}px`;
-      star.style.setProperty('--angle', `${angle}deg`);
-      star.style.setProperty('--move-x', `${endX - startX}px`);
-      star.style.setProperty('--move-y', `${endY - startY}px`);
-      star.style.animationName = 'shooting-star-move-ltr';
     } else {
-      // Right to left: start at right edge, end at left edge, random Y for both
       startX = width;
       endX = 0;
-      startY = Math.random() * height;
-      endY = Math.random() * height;
-      angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
-      star.className = 'shooting-star rtl';
-      star.style.left = `${startX}px`;
-      star.style.top = `${startY}px`;
-      star.style.setProperty('--angle', `${angle}deg`);
-      star.style.setProperty('--move-x', `${endX - startX}px`);
-      star.style.setProperty('--move-y', `${endY - startY}px`);
-      star.style.animationName = 'shooting-star-move-rtl';
     }
+    startY = Math.random() * height;
+    endY = Math.random() * height;
+    const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
 
-    // Force reflow to ensure animation triggers
-    void star.offsetWidth;
+    star.className = isLTR ? 'shooting-star ltr' : 'shooting-star rtl';
+    star.style.left = `${startX}px`;
+    star.style.top = `${startY}px`;
+    star.style.setProperty('--angle', `${angle}deg`);
+    star.style.setProperty('--move-x', `${endX - startX}px`);
+    star.style.setProperty('--move-y', `${endY - startY}px`);
+    star.style.animationName = isLTR ? 'shooting-star-move-ltr' : 'shooting-star-move-rtl';
 
     container.appendChild(star);
 
-    setTimeout(() => {
-      star.remove();
-    }, 1800);
+    setTimeout(() => star.remove(), 1800);
   }
 
   setInterval(() => {

@@ -29,25 +29,6 @@ body {
   }
 }
 
-/* Starfield Background Animation */
-.starfield-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: url('images/starfield.png') center center / cover no-repeat;
-  animation: star-pan 120s linear infinite;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Star Pan Animation */
-@keyframes star-pan {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
 /* Navigation Bar Styling */
 nav {
   display: flex;
@@ -220,7 +201,7 @@ nav .hamburger {
   pointer-events: none;
   z-index: 10;
   transform: rotate(var(--angle));
-  animation-duration: 1.656s !important; /* Reset to previous slowest speed */
+  animation-duration: 1.656s !important;
   animation-iteration-count: 1 !important;
   animation-timing-function: linear !important;
 }
@@ -266,23 +247,6 @@ nav .hamburger {
   100% {
     opacity: 0;
     transform: translate(var(--move-x), var(--move-y)) scaleY(0.5) rotate(var(--angle));
-  }
-}
-
-@keyframes shooting-star-move {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scaleY(1) rotate(var(--angle));
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(300px) scaleY(0.5) rotate(var(--angle));
   }
 }
 
@@ -389,25 +353,6 @@ nav .hamburger {
     text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
     filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8));
   }
-}
-
-/* Starfield Background Animation */
-.starfield-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: url('images/starfield.png') center center / cover no-repeat;
-  animation: star-pan 120s linear infinite;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Star Pan Animation */
-@keyframes star-pan {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
 }
 
 /* Background Image Scaling and Positioning for All Sections */
@@ -1093,23 +1038,6 @@ body.light-mode a:hover {
   box-sizing: border-box;
 }
 
-/* Perfectly align and space the location input buttons */
-.location-input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.location-input button {
-  width: 100%;
-  min-width: 180px;
-  max-width: 220px;
-  box-sizing: border-box;
-  margin: 0;
-  display: block;
-}
-
 /* Make sure the input fields also stretch to match the buttons for visual consistency */
 .location-input input[type="number"] {
   width: 100%;
@@ -1117,20 +1045,4 @@ body.light-mode a:hover {
   max-width: 220px;
   box-sizing: border-box;
   margin-bottom: 8px;
-}
-
-/* Center and align location input buttons perfectly */
-.location-input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.location-input button {
-  width: 200px;
-  max-width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  display: block;
 }
