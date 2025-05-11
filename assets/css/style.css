@@ -368,6 +368,16 @@ nav .hamburger {
 }
 
 /* Featured Merch Section */
+#shop {
+  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
+  border: 1px solid rgba(255, 204, 0, 0.6); /* Add warm yellow border */
+  border-radius: 12px; /* Add rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
+  padding: 30px; /* Maintain padding inside the box */
+  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  text-align: center;
+}
+
 .merch-card {
   display: inline-block; /* Ensure cards are inline */
   margin: 20px; /* Increase spacing between cards */
@@ -551,11 +561,6 @@ nav .hamburger {
 }
 
 /* Featured Merch Section */
-#shop {
-  background-color: rgba(10, 25, 50, 0.8); /* Space-themed shade of blue with transparency */
-  border: 2px solid rgba(60, 179, 113, 0.6); /* Subtle shade of green */
-}
-
 #shop h2 {
   color: rgba(60, 179, 113, 0.8); /* Match border color (green) */
 }
@@ -566,8 +571,13 @@ nav .hamburger {
 
 /* About the Group Section */
 #community {
-  background-color: rgba(10, 25, 50, 0.8); /* Space-themed shade of blue with transparency */
-  border: 2px solid rgba(255, 165, 0, 0.6); /* Subtle shade of orange */
+  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
+  border: 1px solid rgba(255, 204, 0, 0.6); /* Add warm yellow border */
+  border-radius: 12px; /* Add rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
+  padding: 30px; /* Maintain padding inside the box */
+  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  text-align: center;
 }
 
 #community h2 {
@@ -597,6 +607,43 @@ nav .hamburger {
 
 #contact a:hover {
   color: rgba(255, 255, 255, 0.85); /* Change link color on hover */
+}
+
+/* Useful Links Section Styling */
+#useful-links {
+  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
+  border: 1px solid rgba(0, 204, 153, 0.6); /* Unique teal border */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
+  padding: 30px; /* Maintain padding inside the box */
+  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  text-align: center;
+}
+
+#useful-links h2 {
+  font-size: 2rem; /* Match section title size */
+  margin-bottom: 20px; /* Add spacing below the title */
+  color: #00cc99; /* Match the teal border color */
+}
+
+.useful-links-list {
+  list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
+}
+
+.useful-links-list li {
+  margin: 10px 0; /* Add spacing between links */
+}
+
+.useful-links-list a {
+  color: #00cc99; /* Match the teal border color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease;
+}
+
+.useful-links-list a:hover {
+  color: rgba(255, 255, 255, 0.85); /* Highlight link on hover */
 }
 
 /* Footer Styling */
