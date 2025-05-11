@@ -329,6 +329,23 @@ nav .hamburger {
   height: auto;
 }
 
+/* Moon phase section styling */
+#moon-phase {
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack the image and text vertically */
+  align-items: center; /* Center the content horizontally */
+  text-align: center; /* Center the text below the image */
+  padding: 10px; /* Add some padding for spacing */
+}
+
+/* Moon phase image styling */
+#moon-phase img {
+  max-width: 100%; /* Ensure the image scales to fit the container width */
+  max-height: 150px; /* Limit the height of the image */
+  object-fit: contain; /* Maintain aspect ratio while fitting within the container */
+  margin-bottom: 10px; /* Add spacing between the image and the text */
+}
+
 /* Responsive scaling for 4K and larger screens */
 @media (min-width: 2560px) {
   .hero-section {
