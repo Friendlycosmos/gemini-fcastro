@@ -200,6 +200,30 @@ nav .hamburger {
   text-align: center; /* Ensure text is centered */
   background-size: cover; /* Ensure background images cover the area */
   background-position: center; /* Center the background images */
+  transition: background-image 0s; /* We'll use opacity for the crossfade */
+}
+
+#hero .hero-crossfade {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s cubic-bezier(.4,0,.2,1);
+  z-index: 1;
+}
+
+#hero.crossfading .hero-crossfade {
+  opacity: 1;
+}
+
+/* Ensure hero content is above the crossfade layer */
+#hero > *:not(.hero-crossfade) {
+  position: relative;
+  z-index: 2;
 }
 
 /* Hero Section Logo */
@@ -369,15 +393,16 @@ nav .hamburger {
 
 /* Featured Merch Section */
 #shop {
-  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
-  border: 1px solid rgba(255, 204, 0, 0.6); /* Add warm yellow border */
-  border-radius: 12px; /* Add rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
-  padding: 30px; /* Maintain padding inside the box */
-  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  background-color: rgba(255, 204, 0, 0.08); /* Transparent yellow background */
+  border: 1.5px solid rgba(255, 204, 0, 0.6); /* Yellow border */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+  padding: 30px;
+  color: rgba(255,255,255,0.85);
   text-align: center;
 }
 
+/* Merch Card Styling */
 .merch-card {
   display: inline-block; /* Ensure cards are inline */
   margin: 20px; /* Increase spacing between cards */
@@ -410,6 +435,13 @@ nav .hamburger {
 .merch-card h3 {
   margin: 10px 0; /* Adjust spacing */
   font-size: 1.5rem; /* Increase font size */
+}
+
+/* Convert section headings and dashboard box headings to uppercase */
+section h2,
+.dashboard-box h3,
+.product h3 {
+  text-transform: uppercase;
 }
 
 .merch-card p {
@@ -507,14 +539,24 @@ nav .hamburger {
 
 /* Dashboard Section Refinement */
 .dashboard {
-  max-width: 1000px; /* Match the width of the Featured Merch section */
-  margin: 0 auto; /* Center the dashboard section */
-  margin-top: 30px; /* Ensure consistent spacing above the section */
-  padding: 40px 20px; /* Add padding for spacing */
-  background-color: rgba(10, 25, 50, 0.8); /* Space-themed shade of blue with transparency */
-  border: 2px solid rgba(70, 130, 180, 0.6); /* Subtle shade of blue */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
+  background-color: rgba(0, 123, 255, 0.08);
+  border: 1.5px solid rgba(0, 123, 255, 0.5); /* Match border width to other sections */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+  padding: 30px;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Restore interior borders for dashboard-box */
+.dashboard-box {
+  border: 1.5px solid #ffcc00;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.7);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  padding: 18px;
+  margin: 8px;
 }
 
 .dashboard-container {
@@ -535,18 +577,6 @@ nav .hamburger {
   display: flex;
   justify-content: space-between; /* Space out the boxes evenly */
   gap: 20px; /* Add spacing between boxes */
-}
-
-.dashboard-box {
-  flex: 1; /* Ensure boxes take equal width */
-  padding: 20px; /* Add consistent padding */
-  background-color: rgba(0, 0, 0, 0.8); /* Subtle background for visibility */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Add subtle border */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
-  text-align: center; /* Align text in the center */
-  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
-  min-height: 150px; /* Ensure consistent box height */
 }
 
 .dashboard-box h3 {
@@ -571,12 +601,12 @@ nav .hamburger {
 
 /* About the Group Section */
 #community {
-  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
-  border: 1px solid rgba(255, 204, 0, 0.6); /* Add warm yellow border */
-  border-radius: 12px; /* Add rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
-  padding: 30px; /* Maintain padding inside the box */
-  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  border: 1.5px solid rgba(153, 51, 255, 0.6);
+  background-color: rgba(153, 51, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+  padding: 30px;
+  color: rgba(255,255,255,0.85);
   text-align: center;
 }
 
@@ -590,12 +620,12 @@ nav .hamburger {
 
 /* Contact Us Section */
 #contact {
-  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
-  border: 1px solid rgba(255, 204, 0, 0.6); /* Add warm yellow border */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Enhance shadow for depth */
-  padding: 30px; /* Maintain padding inside the box */
-  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  border: 1.5px solid rgba(255, 51, 153, 0.6);
+  background-color: rgba(255, 51, 153, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+  padding: 30px;
+  color: rgba(255,255,255,0.85);
   text-align: center;
 }
 
@@ -611,12 +641,12 @@ nav .hamburger {
 
 /* Useful Links Section Styling */
 #useful-links {
-  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
-  border: 1px solid rgba(0, 204, 153, 0.6); /* Unique teal border */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
-  padding: 30px; /* Maintain padding inside the box */
-  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
+  border: 1.5px solid rgba(0, 204, 153, 0.6);
+  background-color: rgba(0, 204, 153, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+  padding: 30px;
+  color: rgba(255,255,255,0.85);
   text-align: center;
 }
 
@@ -955,4 +985,66 @@ body.light-mode a:hover {
   font-weight: bold; /* Make the times bold */
   display: block; /* Ensure the times are on their own line */
   margin-bottom: 5px; /* Add spacing below the times */
+}
+
+/* Ensure spacing and centering for location input buttons */
+.location-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Space between all elements */
+}
+
+.location-input label,
+.location-input input {
+  margin-bottom: 6px;
+}
+
+#update-location,
+#detect-location {
+  width: 180px; /* Make both buttons the same width for perfect alignment */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Perfectly align and space the location input buttons */
+.location-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.location-input button {
+  width: 100%;
+  min-width: 180px;
+  max-width: 220px;
+  box-sizing: border-box;
+  margin: 0;
+  display: block;
+}
+
+/* Make sure the input fields also stretch to match the buttons for visual consistency */
+.location-input input[type="number"] {
+  width: 100%;
+  min-width: 180px;
+  max-width: 220px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+/* Center and align location input buttons perfectly */
+.location-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.location-input button {
+  width: 200px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  display: block;
 }

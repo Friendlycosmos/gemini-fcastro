@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const hero = document.getElementById('hero');
-  const backgrounds = [
+  const images = [
     'assets/images/hero/image1.png',
     'assets/images/hero/image2.png',
     'assets/images/hero/image3.png',
@@ -8,27 +8,30 @@ document.addEventListener('DOMContentLoaded', () => {
     'assets/images/hero/image5.png',
     'assets/images/hero/image6.png'
   ];
-  let index = 0;
+  let currentIndex = 0;
 
-  function rotateBackground() {
-    const nextIndex = (index + 1) % backgrounds.length;
-
-    // Set the ::before pseudo-element's background to the next image
-    hero.style.setProperty('--next-background', `url(${backgrounds[nextIndex]})`);
-
-    // Trigger the crossfade
-    hero.classList.add('crossfade');
-    setTimeout(() => {
-      // Update the main background after the crossfade
-      hero.style.backgroundImage = `url(${backgrounds[nextIndex]})`;
-      hero.classList.remove('crossfade');
-      index = nextIndex;
-    }, 1500); // Match the transition duration
+  // Create crossfade overlay div if not present
+  let crossfadeDiv = hero.querySelector('.hero-crossfade');
+  if (!crossfadeDiv) {
+    crossfadeDiv = document.createElement('div');
+    crossfadeDiv.className = 'hero-crossfade';
+    hero.insertBefore(crossfadeDiv, hero.firstChild);
   }
 
-  // Initialize the first background
-  hero.style.backgroundImage = `url(${backgrounds[index]})`;
+  // Set initial background
+  hero.style.backgroundImage = `url('${images[currentIndex]}')`;
 
-  // Rotate every 10 seconds
-  setInterval(rotateBackground, 10000);
+  function crossfadeToNextImage() {
+    const nextIndex = (currentIndex + 1) % images.length;
+    crossfadeDiv.style.backgroundImage = `url('${images[nextIndex]}')`;
+    hero.classList.add('crossfading');
+    // Start crossfade
+    setTimeout(() => {
+      hero.style.backgroundImage = `url('${images[nextIndex]}')`;
+      hero.classList.remove('crossfading');
+      currentIndex = nextIndex;
+    }, 1200); // Match transition duration in CSS
+  }
+
+  setInterval(crossfadeToNextImage, 8000);
 });
