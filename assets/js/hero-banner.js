@@ -34,4 +34,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setInterval(crossfadeToNextImage, 8000);
+
+  function createShootingStar() {
+    const container = document.getElementById('shooting-star-container');
+    if (!container) return;
+
+    const star = document.createElement('div');
+    star.className = 'shooting-star';
+
+    // Randomize start position and angle
+    const startX = Math.random() * 80 + 10; // 10% to 90% across the width
+    const angle = Math.random() * 40 + 60; // 60deg to 100deg (downward, left to right)
+    star.style.left = `${startX}%`;
+    star.style.top = '-10px';
+    star.style.setProperty('--angle', `${angle}deg`);
+
+    container.appendChild(star);
+
+    // Remove the star after animation
+    setTimeout(() => {
+      star.remove();
+    }, 1000);
+  }
+
+  // Randomly trigger a shooting star every 3-8 seconds
+  setInterval(() => {
+    if (Math.random() > 0.5) createShootingStar();
+  }, 3000);
 });

@@ -393,7 +393,7 @@ nav .hamburger {
 
 /* Featured Merch Section */
 #shop {
-  background-color: rgba(255, 204, 0, 0.08); /* Transparent yellow background */
+  background-color: rgba(60, 50, 0, 0.38); /* Darker yellow-brown, same opacity */
   border: 1.5px solid rgba(255, 204, 0, 0.6); /* Yellow border */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.7);
@@ -539,7 +539,7 @@ section h2,
 
 /* Dashboard Section Refinement */
 .dashboard {
-  background-color: rgba(0, 123, 255, 0.08);
+  background-color: rgba(10, 30, 60, 0.38); /* Darker blue, same opacity */
   border: 1.5px solid rgba(0, 123, 255, 0.5); /* Match border width to other sections */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.7);
@@ -601,6 +601,7 @@ section h2,
 
 /* About the Group Section */
 #community {
+  background-color: rgba(40, 10, 60, 0.38); /* Darker purple, same opacity */
   border: 1.5px solid rgba(153, 51, 255, 0.6);
   background-color: rgba(153, 51, 255, 0.08);
   border-radius: 12px;
@@ -620,6 +621,7 @@ section h2,
 
 /* Contact Us Section */
 #contact {
+  background-color: rgba(60, 10, 30, 0.38); /* Darker pink, same opacity */
   border: 1.5px solid rgba(255, 51, 153, 0.6);
   background-color: rgba(255, 51, 153, 0.08);
   border-radius: 12px;
@@ -641,6 +643,7 @@ section h2,
 
 /* Useful Links Section Styling */
 #useful-links {
+  background-color: rgba(0, 40, 30, 0.38); /* Darker teal, same opacity */
   border: 1.5px solid rgba(0, 204, 153, 0.6);
   background-color: rgba(0, 204, 153, 0.08);
   border-radius: 12px;
