@@ -811,6 +811,7 @@ body.light-mode a:hover {
   z-index: 1000;
 }
 
+/* Modal styles */
 .modal-content {
   background-color: #1a1a1a; /* Dark background for modal content */
   color: #f0f0f0; /* Light text for readability */
@@ -821,18 +822,24 @@ body.light-mode a:hover {
   max-height: 80%; /* Limit height to 80% of the viewport */
   overflow-y: auto; /* Enable vertical scrolling for long content */
   text-align: center;
-  position: relative; /* For positioning the close button */
+  position: relative; /* For positioning the close button relative to the modal */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
 }
 
+/* Ensure the close button remains sticky and positioned in the top-right corner */
 .modal-content .close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
+  position: sticky; /* Stick the button to the top of the modal content */
+  top: 0; /* Stick to the top of the modal content */
+  margin-top: 10px; /* Add spacing from the top */
+  margin-right: -10px; /* Align to the right edge of the modal */
   font-size: 24px;
   font-weight: bold;
   color: #f0f0f0; /* Light color for the close button */
   cursor: pointer;
+  z-index: 10; /* Ensure it stays above other content */
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for better visibility */
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 
 .modal-content h3 {
