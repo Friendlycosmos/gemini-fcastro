@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="starfield-wrapper"></div>
-
   <nav>
     <div class="nav-header">
       <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -35,15 +33,9 @@
         <div class="dashboard-boxes">
           <div class="dashboard-box">
             <h3>Current Moon Phase</h3>
-            <div class="moon-image-container">
-              <img id="moon-image" src="assets/images/moon_phases/default.png" alt="Moon Phase">
+            <div id="moon-phase">
+              <p>Loading moon phase data...</p>
             </div>
-            <p id="moon-date">Date: Loading...</p>
-            <p id="moon-phase">Phase: Loading...</p>
-            <p id="moon-illumination">Illumination: Loading...</p>
-            <p id="moon-type">Type: Loading...</p>
-            <button id="prev-day">Previous Day</button>
-            <button id="next-day">Next Day</button>
           </div>
           <div class="dashboard-box">
             <h3>Set Your Location</h3>
@@ -58,16 +50,17 @@
           </div>
           <div class="dashboard-box">
             <h3>Weather Forecast</h3>
-            <div id="weather-data" class="weather-data">
-              <p>Loading weather data...</p>
+            <div id="weather-location">
+              <p>Loading location...</p>
             </div>
-            <div id="weather-forecast" class="weather-forecast">
-              <p>Loading extended forecast...</p>
-            </div>
-            <div id="weather-details" class="weather-details" style="display: none;">
-              <h4>Detailed Weather Information</h4>
-              <div id="detailed-weather-content">
-                <p>Select a day to view detailed information.</p>
+            <div id="weather-forecast">
+              <h4>Hourly Forecast</h4>
+              <div id="hourly-forecast">
+                <p>Loading hourly forecast...</p>
+              </div>
+              <h4>Daily Forecast</h4>
+              <div id="daily-forecast">
+                <p>Loading daily forecast...</p>
               </div>
             </div>
           </div>
@@ -81,15 +74,18 @@
       </div>
     </section>
 
-    <div id="hourly-forecast-modal" class="modal" style="display: none;">
+    <!-- Hourly Forecast Modal -->
+    <div id="hourly-forecast-modal" class="modal hidden">
       <div class="modal-content">
-        <span id="close-hourly-forecast" class="close">&times;</span>
-        <h4>Hourly Forecast</h4>
-        <div id="hourly-forecast-content">
-          <p>Select a day to view hourly details.</p>
+        <span id="close-hourly-modal" class="close">&times;</span>
+        <h3>Hourly Forecast</h3>
+        <div id="hourly-forecast-modal-content">
+          <p>Loading hourly forecast...</p>
         </div>
       </div>
     </div>
+
+    <div class="section-divider"></div>
 
     <section id="shop" class="section">
       <h2>Featured Merch</h2>
@@ -111,6 +107,7 @@
         </div>
       </div>
     </section>
+    <div class="section-divider"></div>
 
     <section id="community" class="section">
       <h2>About the Group</h2>
@@ -124,6 +121,7 @@
       No matter your skill level, you're part of the galaxy of creators illuminating the night sky. Come for the stars—stay for the community.</p>
       <p>Join us on <a href="https://discord.gg/friendlycosmos" target="_blank" rel="noopener">Discord</a> or follow our captures on <a href="https://www.instagram.com/friendly.cosmos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Instagram</a>.</p>
     </section>
+    <div class="section-divider"></div>
 
     <section id="contact" class="section">
       <h2>Contact Us</h2>
@@ -147,49 +145,35 @@
   </footer>
 
   <script src="assets/js/suncalc.js" defer></script>
-  <script>
-    const hero = document.getElementById('hero');
-    const backgrounds = [
-      'assets/images/hero/image1.png',
-      'assets/images/hero/image2.png',
-      'assets/images/hero/image3.png',
-      'assets/images/hero/image4.png',
-      'assets/images/hero/image5.png',
-      'assets/images/hero/image6.png'
-    ];
-    let index = 0;
-    function rotateBackground() {
-      const nextIndex = (index + 1) % backgrounds.length;
-      hero.style.setProperty('--next-background', `url(${backgrounds[nextIndex]})`);
-      hero.classList.add('crossfade');
-      setTimeout(() => {
-        hero.style.backgroundImage = `url(${backgrounds[nextIndex]})`);
-        hero.classList.remove('crossfade');
-        index = nextIndex;
-      }, 2000);
-    }
-    hero.style.backgroundImage = `url(${backgrounds[index]})`;
-    setInterval(rotateBackground, 10000);
-
-    function toggleMenu() {
-      const nav = document.getElementById("main-nav");
-      nav.classList.toggle("show");
-    }
-
-    function setHeroHeight() {
-      const hero = document.getElementById('hero');
-      if (hero) {
-        const h = hero.getBoundingClientRect().height + 'px';
-        document.documentElement.style.setProperty('--hero-height', h);
-        document.querySelector('.starfield-wrapper').style.top = h;
-        document.querySelector('.starfield-wrapper').style.height = 'calc(100vh - ' + h + ')';
-      }
-    }
-    window.addEventListener('load', setHeroHeight);
-    window.addEventListener('resize', setHeroHeight);
-  </script>
   <script src="assets/js/moon-phase.js" defer></script>
   <script src="assets/js/weather.js" defer></script>
   <script src="assets/js/astro-events.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const defaultLat = 40.7128; // Example latitude (New York City)
+      const defaultLon = -74.006; // Example longitude (New York City)
+
+      // Ensure moon phase script executes
+      if (typeof fetchMoonPhase === 'function') {
+        fetchMoonPhase(defaultLat, defaultLon);
+      } else {
+        console.error('fetchMoonPhase is not defined. Ensure moon-phase.js is loaded correctly.');
+      }
+
+      // Ensure weather forecast script executes
+      if (typeof fetchWeatherData === 'function') {
+        fetchWeatherData(defaultLat, defaultLon);
+      } else {
+        console.error('fetchWeatherData is not defined. Ensure weather.js is loaded correctly.');
+      }
+
+      // Ensure astronomical events script executes
+      if (typeof fetchAstroEvents === 'function') {
+        fetchAstroEvents(defaultLat, defaultLon);
+      } else {
+        console.error('fetchAstroEvents is not defined. Ensure astro-events.js is loaded correctly.');
+      }
+    });
+  </script>
 </body>
 </html>

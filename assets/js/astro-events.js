@@ -8,6 +8,32 @@ document.addEventListener("DOMContentLoaded", () => {
   let latitude = 40.7128; // Default: New York latitude
   let longitude = -74.0060; // Default: New York longitude
 
+  async function fetchAstroEvents(lat, lon) {
+    try {
+      const url = `https://api.friendlycosmos.com/astro-events?lat=${lat}&lon=${lon}`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.statusText}`);
+      }
+      const data = await response.json();
+      console.log('Astronomical events data:', data);
+
+      const astroEventsElement = document.getElementById('astro-events');
+      if (astroEventsElement) {
+        const eventsHtml = data.events
+          .map((event) => `<p>${event.name} · ${event.time}</p>`)
+          .join('');
+        astroEventsElement.innerHTML = eventsHtml;
+      }
+    } catch (error) {
+      console.error('Error fetching astronomical events:', error);
+      const astroEventsElement = document.getElementById('astro-events');
+      if (astroEventsElement) {
+        astroEventsElement.innerHTML = `<p>Error loading astronomical events.</p>`;
+      }
+    }
+  }
+
   function displayAstronomicalEvents() {
     const date = new Date();
 

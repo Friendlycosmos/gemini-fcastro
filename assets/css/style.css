@@ -486,6 +486,8 @@ nav .hamburger {
   max-width: 1000px; /* Match the width of the Featured Merch section */
   margin: 0 auto; /* Center the container */
   text-align: center; /* Center-align the title */
+  max-height: 600px; /* Set a maximum height for the Sky Briefing section */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
 }
 
 .dashboard-container h2 {
@@ -599,7 +601,7 @@ footer .social-footer a:hover {
   transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effect */
 }
 
-.social-footer a:hover img {
+social-footer a:hover img {
   transform: scale(1.2); /* Slightly enlarge the icon on hover */
   filter: brightness(1.5); /* Brighten the icon on hover */
 }
@@ -620,12 +622,6 @@ footer .social-footer a:hover {
   margin: 30px auto; /* Ensure consistent spacing between sections */
   max-width: 1000px; /* Reduce maximum width for better alignment */
   text-align: center;
-  background-color: rgba(34, 34, 34, 0.9); /* Match darker container color */
-  border: 1px solid rgba(255, 204, 0, 0.6); /* Add warm yellow border */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Enhance shadow for depth */
-  padding: 30px; /* Maintain padding inside the box */
-  color: rgba(255, 255, 255, 0.85); /* Adjust text color for contrast */
 }
 
 .section h2 {
@@ -704,8 +700,8 @@ body.light-mode a:hover {
 /* Content Hierarchy: Section Dividers */
 .section-divider {
   width: 80%;
-  height: 2px;
   background-color: rgba(255, 255, 255, 0.2); /* Subtle divider */
+  height: 2px;
   margin: 30px auto;
 }
 
@@ -770,6 +766,15 @@ body.light-mode a:hover {
   color: inherit; /* Ensure paragraphs inherit the forced text color */
 }
 
+/* Weather Forecast Styling */
+.weather-forecast {
+  max-height: 300px; /* Set a maximum height for the forecast window */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  padding: 10px; /* Optional: Add padding for better readability */
+  border: 1px solid #ccc; /* Optional: Add a border to visually separate the section */
+  background-color: #f9f9f9; /* Optional: Add a background color for better contrast */
+}
+
 /* Astronomical Events Section */
 #astro-events {
   color: #000 !important; /* Force text color to black for visibility */
@@ -786,38 +791,57 @@ body.light-mode a:hover {
 
 /* Modal Styling */
 .modal {
+  display: none; /* Ensure the modal is hidden by default */
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
-  background-color: #f9f9f9; /* Light background for contrast */
-  color: #000; /* Set text color to black for visibility */
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 600px;
 }
 
 .modal-content {
-  position: relative;
+  background-color: #fff; /* White background for modal content */
+  color: #000; /* Black text for readability */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80%; /* Limit height to 80% of the viewport */
+  overflow-y: auto; /* Enable vertical scrolling */
+  text-align: center;
+  position: relative; /* For positioning the close button */
 }
 
-.modal .close {
+.modal-content .close {
   position: absolute;
   top: 10px;
-  right: 15px;
-  font-size: 1.5rem;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #000; /* Black close button */
   cursor: pointer;
 }
 
-#hourly-forecast-content {
-  max-height: 400px;
-  overflow-y: auto;
+.modal.hidden {
+  display: none; /* Ensure the modal is hidden when the 'hidden' class is applied */
 }
 
-#hourly-forecast-content p {
-  margin: 0.5rem 0;
-  color: inherit; /* Ensure paragraphs inherit the forced text color */
+/* Forecast Date Styling */
+.forecast-day p strong {
+  color: #ffcc00; /* Change the date heading color to yellow */
+  font-size: 1.2rem; /* Slightly increase the font size for emphasis */
+}
+
+/* Forecast Day Styling */
+.forecast-day {
+  cursor: pointer; /* Indicate the element is clickable */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.forecast-day:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Add a subtle hover effect */
 }

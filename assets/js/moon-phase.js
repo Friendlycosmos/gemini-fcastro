@@ -1,61 +1,61 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const moonDateElement = document.getElementById("moon-date");
-  const moonPhaseElement = document.getElementById("moon-phase");
-  const moonIlluminationElement = document.getElementById("moon-illumination");
-  const moonTypeElement = document.getElementById("moon-type");
-  const moonImageElement = document.getElementById("moon-image");
+  const latitude = 40.7128; // Default latitude (New York)
+  const longitude = -74.0060; // Default longitude (New York)
 
-  let currentDate = new Date();
+  async function fetchMoonPhase(lat, lon) {
+    try {
+      const url = `https://api.friendlycosmos.com/moon-phase?lat=${lat}&lon=${lon}`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.statusText}`);
+      }
+      const data = await response.json();
+      console.log('Moon phase data:', data);
 
-  function updateMoonPhase(date) {
-    const moonData = SunCalc.getMoonIllumination(date);
-    console.log("Moon Data:", moonData); // Debugging log
-
-    const phase = moonData.phase; // Moon phase as a fraction
-    const illumination = (moonData.fraction * 100).toFixed(1); // Illumination percentage
-
-    // Map phase to moon phase names
-    let phaseName = "";
-    if (phase === 0) {
-      phaseName = "New Moon";
-    } else if (phase > 0 && phase < 0.25) {
-      phaseName = "Waxing Crescent";
-    } else if (phase === 0.25) {
-      phaseName = "First Quarter";
-    } else if (phase > 0.25 && phase < 0.5) {
-      phaseName = "Waxing Gibbous";
-    } else if (phase === 0.5) {
-      phaseName = "Full Moon";
-    } else if (phase > 0.5 && phase < 0.75) {
-      phaseName = "Waning Gibbous";
-    } else if (phase === 0.75) {
-      phaseName = "Last Quarter";
-    } else if (phase > 0.75 && phase < 1) {
-      phaseName = "Waning Crescent";
+      const moonPhaseElement = document.getElementById('moon-phase');
+      if (moonPhaseElement) {
+        moonPhaseElement.innerHTML = `
+          <p>${data.phase} · ${data.illumination}% visible · Best seen ${data.bestSeen}</p>
+          <img src="${data.image}" alt="Moon Phase Image" />
+        `;
+      }
+    } catch (error) {
+      console.error('Error fetching moon phase data:', error);
+      const moonPhaseElement = document.getElementById('moon-phase');
+      if (moonPhaseElement) {
+        moonPhaseElement.innerHTML = `<p>Error loading moon phase data.</p>`;
+      }
     }
-
-    // Update the UI
-    moonDateElement.textContent = `Date: ${date.toDateString()}`;
-    moonPhaseElement.textContent = `Phase: ${phaseName}`;
-    moonIlluminationElement.textContent = `Illumination: ${illumination}%`;
-    moonTypeElement.textContent = `Type: ${phaseName}`;
-
-    // Update the moon image
-    const phaseImageName = phaseName.toLowerCase().replace(" ", "-");
-    moonImageElement.src = `assets/images/moon_phases/${phaseImageName}.png`;
-    moonImageElement.alt = phaseName;
   }
 
-  document.getElementById("prev-day").addEventListener("click", () => {
-    currentDate.setDate(currentDate.getDate() - 1);
-    updateMoonPhase(currentDate);
+  // Attach event listeners to update the moon phase when the location changes
+  document.getElementById('update-location').addEventListener('click', () => {
+    const lat = parseFloat(document.getElementById('latitude').value);
+    const lon = parseFloat(document.getElementById('longitude').value);
+    if (!isNaN(lat) && !isNaN(lon)) {
+      fetchMoonPhase(lat, lon);
+    } else {
+      alert('Please enter valid latitude and longitude values.');
+    }
   });
 
-  document.getElementById("next-day").addEventListener("click", () => {
-    currentDate.setDate(currentDate.getDate() + 1);
-    updateMoonPhase(currentDate);
+  document.getElementById('detect-location').addEventListener('click', () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          fetchMoonPhase(lat, lon);
+        },
+        (error) => {
+          console.error('Error detecting location:', error);
+          alert('Unable to detect location. Please enter it manually.');
+        }
+      );
+    } else {
+      alert('Geolocation is not supported by your browser.');
+    }
   });
 
-  // Initialize with the current date
-  updateMoonPhase(currentDate);
+  fetchMoonPhase(latitude, longitude);
 });
