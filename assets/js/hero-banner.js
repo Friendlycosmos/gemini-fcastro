@@ -40,25 +40,49 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!container) return;
 
     const star = document.createElement('div');
-    star.className = 'shooting-star';
+    const isLTR = Math.random() > 0.5;
 
-    // Randomize start position and angle
-    const startX = Math.random() * 80 + 10; // 10% to 90% across the width
-    const angle = Math.random() * 40 + 60; // 60deg to 100deg (downward, left to right)
-    star.style.left = `${startX}%`;
-    star.style.top = '-10px';
-    star.style.setProperty('--angle', `${angle}deg`);
+    // Angle: 55deg (shallow) to 80deg (steep)
+    const angle = (Math.random() * 25) + 55;
+    // Random vertical start position (10% to 80%)
+    const startY = Math.random() * 70 + 10;
+
+    star.className = 'shooting-star ' + (isLTR ? 'ltr' : 'rtl');
+
+    if (isLTR) {
+      star.style.left = '0%';
+      star.style.top = `${startY}%`;
+      star.style.setProperty('--angle', `${angle}deg`);
+      // Calculate the Y offset for the end point based on the angle and hero width
+      const hero = container.parentElement;
+      const heroRect = hero.getBoundingClientRect();
+      const width = heroRect.width;
+      const height = heroRect.height;
+      // tan(angle) = deltaY / width
+      const radians = angle * Math.PI / 180;
+      const deltaY = Math.tan(radians) * width;
+      star.style.setProperty('--deltaY', `${deltaY}px`);
+    } else {
+      star.style.left = '100%';
+      star.style.top = `${startY}%`;
+      star.style.setProperty('--angle', `-${angle}deg`);
+      const hero = container.parentElement;
+      const heroRect = hero.getBoundingClientRect();
+      const width = heroRect.width;
+      const radians = angle * Math.PI / 180;
+      const deltaY = Math.tan(radians) * width;
+      star.style.setProperty('--deltaY', `${deltaY}px`);
+    }
 
     container.appendChild(star);
 
-    // Remove the star after animation
     setTimeout(() => {
       star.remove();
-    }, 1000);
+    }, 1800);
   }
 
-  // Randomly trigger a shooting star every 3-8 seconds
+  // Increase frequency, as before
   setInterval(() => {
-    if (Math.random() > 0.5) createShootingStar();
-  }, 3000);
+    if (Math.random() > 0.3) createShootingStar();
+  }, 2200);
 });
