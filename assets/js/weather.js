@@ -173,14 +173,16 @@ document.addEventListener("DOMContentLoaded", () => {
           const windSpeedKph = (hour.wind_speed * 3.6).toFixed(1);
           const cloudCover = `${hour.clouds}%`;
           const humidity = `${hour.humidity}%`;
+          const pressure = `${hour.pressure} hPa`; // Add barometric pressure
 
           return `
             <div class="hourly-forecast-item">
-              <p><strong>${time}</strong></p>
+              <p><strong>${time}</strong></p> <!-- Styled time -->
               <p>Temp: ${tempC}°C / ${tempF}°F</p>
               <p>Wind: ${windSpeedMph} mph / ${windSpeedKph} kph</p>
               <p>Clouds: ${cloudCover}</p>
               <p>Humidity: ${humidity}</p>
+              <p>Pressure: ${pressure}</p> <!-- Display barometric pressure -->
             </div>
           `;
         })

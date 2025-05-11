@@ -859,3 +859,11 @@ body.light-mode a:hover {
 .forecast-day:hover {
   background-color: rgba(255, 255, 255, 0.1); /* Add a subtle hover effect */
 }
+
+/* Style for hourly times in the modal */
+.hourly-forecast-item strong {
+  color: #ffcc00; /* Use an accent color (gold) for the times */
+  font-weight: bold; /* Make the times bold */
+  display: block; /* Ensure the times are on their own line */
+  margin-bottom: 5px; /* Add spacing below the times */
+}
