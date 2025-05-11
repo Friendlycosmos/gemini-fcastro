@@ -49,6 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Mapping of country codes to full country names
+  const countryCodeToName = {
+    US: "United States",
+    CA: "Canada",
+    GB: "United Kingdom",
+    FR: "France",
+    DE: "Germany",
+    IN: "India",
+    AU: "Australia",
+    // Add more country codes and names as needed
+  };
+
   async function fetchWeatherData(lat, lon) {
     const apiKey = '0c410d09208b73d2b9154ec79b76a07d'; // OpenWeatherMap API key
 
@@ -70,7 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(`Location API Error: ${locationResponse.statusText}`);
       }
       const locationData = await locationResponse.json();
-      const locationName = `${locationData[0]?.name || 'Unknown'}, ${locationData[0]?.country || 'Unknown'}`;
+      const countryCode = locationData[0]?.country || 'Unknown';
+      const countryName = countryCodeToName[countryCode] || countryCode; // Use full name if available, fallback to code
+      const locationName = `${locationData[0]?.name || 'Unknown'}, ${countryName}`;
 
       // Update location display
       const weatherLocationElement = document.getElementById('weather-location');
