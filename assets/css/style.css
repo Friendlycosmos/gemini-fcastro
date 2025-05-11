@@ -185,36 +185,44 @@ nav .hamburger {
 /* Hero Section Refinement */
 #hero {
   position: relative;
-  z-index: 1;
-  background: url('...') center center / cover no-repeat; /* Background covers the entire hero section */
-  padding: 20px; /* Add padding inside the border */
-  text-align: center;
-  color: white;
-  font-family: 'Exo 2', sans-serif;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Add glow to text */
-  min-height: 30vh; /* Minimum height is 30% of the viewport height */
-  background-size: cover; /* Ensure the background covers the entire hero section */
-  background-position: center; /* Center the background image */
-  transition: background-image 2s ease-in-out; /* Smooth transition for morphing effect */
-  border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle border */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Add shadow for depth */
-  overflow: hidden; /* Ensure no overflow during transitions */
+  max-width: 1400px; /* Ensure the banner width is set */
+  width: 90%; /* Ensure it scales responsively */
+  height: 35vh; /* Ensure the height is set */
+  margin: 20px auto; /* Center the banner horizontally with spacing */
+  border: 2px solid rgba(0, 123, 255, 0.5); /* Transparent blue border */
+  border-radius: 12px; /* Add rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Maintain shadow for depth */
+  overflow: hidden; /* Ensure content stays within the border */
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Ensure text is centered */
+  background-size: cover; /* Ensure background images cover the area */
+  background-position: center; /* Center the background images */
 }
 
-#hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 2s ease-in-out; /* Smooth crossfade */
-  z-index: 0;
+/* Hero Section Logo */
+#hero .logo-image {
+  max-width: 80px; /* Further reduce logo size */
+  margin-bottom: 8px; /* Maintain spacing below the logo */
+}
+
+/* Hero Section Text */
+#hero h1 {
+  font-size: 1.5rem; /* Further reduce font size for the title */
+  margin-bottom: 6px; /* Adjust spacing below the title */
+}
+
+#hero p {
+  font-size: 0.8rem; /* Further reduce font size for the subtitle */
+  margin: 0; /* Remove extra margins */
+}
+
+#hero img {
+  object-fit: cover; /* Ensure images fill the area without distortion */
+  width: 100%; /* Make images responsive */
+  height: 100%; /* Ensure images cover the height */
 }
 
 @media (max-width: 768px) {
