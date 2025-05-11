@@ -79,39 +79,40 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log('Location updated successfully.');
       }
 
-      // Update daily forecast
+      // Update daily and extended forecasts
       const dailyForecastElement = document.getElementById('daily-forecast');
       if (dailyForecastElement) {
-        const today = data.daily[0];
-        const todayDate = new Date(today.dt * 1000).toLocaleDateString();
-        const todayTempC = (today.temp.day - 273.15).toFixed(1);
-        const todayTempF = ((today.temp.day - 273.15) * 9/5 + 32).toFixed(1);
-        const todayHtml = `
-          <div class="today-forecast">
-            <h4>Today's Forecast (${todayDate})</h4>
-            <p>Temp: ${todayTempC}°C / ${todayTempF}°F</p>
-          </div>
-        `;
-
-        const extendedHtml = data.daily
-          .slice(1, 7) // Skip today's forecast
+        const forecastHtml = data.daily
+          .slice(0, 7) // Include today's forecast and the next 6 days
           .map((day, index) => {
             const date = new Date(day.dt * 1000).toLocaleDateString();
             const dayTempC = (day.temp.day - 273.15).toFixed(1);
             const dayTempF = ((day.temp.day - 273.15) * 9/5 + 32).toFixed(1);
+            const windSpeedMph = (day.wind_speed * 2.23694).toFixed(1);
+            const windSpeedKph = (day.wind_speed * 3.6).toFixed(1);
+            const cloudCover = `${day.clouds}%`;
+            const humidity = `${day.humidity}%`;
+            const precipitation = day.rain ? `${day.rain} mm` : day.snow ? `${day.snow} mm` : 'None';
+            const pressure = `${day.pressure} hPa`;
+
             return `
-              <div class="daily-forecast-item" data-index="${index + 1}">
+              <div class="daily-forecast-item" data-index="${index}">
                 <p><strong class="forecast-date">${date}</strong></p>
                 <p>Temp: ${dayTempC}°C / ${dayTempF}°F</p>
-                <button class="hourly-forecast-link" data-index="${index + 1}">View Hourly Forecast</button>
+                <p>Wind: ${windSpeedMph} mph / ${windSpeedKph} kph</p>
+                <p>Clouds: ${cloudCover}</p>
+                <p>Humidity: ${humidity}</p>
+                <p>Precipitation: ${precipitation}</p>
+                <p>Pressure: ${pressure}</p>
+                <button class="hourly-forecast-link" data-index="${index}">View Hourly Forecast</button>
               </div>
             `;
           })
           .join('');
 
-        dailyForecastElement.innerHTML = todayHtml + `<h4>Extended Forecast</h4>` + extendedHtml;
+        dailyForecastElement.innerHTML = forecastHtml;
 
-        // Add click event listeners to hourly forecast links
+        // Add click event listeners to hourly forecast buttons
         const hourlyLinks = document.querySelectorAll('.hourly-forecast-link');
         hourlyLinks.forEach((link) => {
           link.addEventListener('click', (event) => {
@@ -121,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         });
 
-        console.log("Daily forecast updated successfully.");
+        console.log("Daily and extended forecasts updated successfully.");
       }
     } catch (error) {
       console.error('Error fetching weather data:', error);
@@ -133,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const dailyForecastElement = document.getElementById('daily-forecast');
       if (dailyForecastElement) {
-        dailyForecastElement.innerHTML = `<p>Error loading daily forecast data.</p>`;
+        dailyForecastElement.innerHTML = `<p>Error loading forecast data.</p>`;
       }
     }
   }
