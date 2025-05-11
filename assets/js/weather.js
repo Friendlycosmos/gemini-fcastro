@@ -88,22 +88,36 @@ document.addEventListener("DOMContentLoaded", () => {
             const date = new Date(day.dt * 1000).toLocaleDateString();
             const dayTempC = (day.temp.day - 273.15).toFixed(1);
             const dayTempF = ((day.temp.day - 273.15) * 9/5 + 32).toFixed(1);
+            const feelsLikeC = (day.feels_like.day - 273.15).toFixed(1);
+            const feelsLikeF = ((day.feels_like.day - 273.15) * 9/5 + 32).toFixed(1);
+            const dewPointC = (day.dew_point - 273.15).toFixed(1);
+            const dewPointF = ((day.dew_point - 273.15) * 9/5 + 32).toFixed(1);
             const windSpeedMph = (day.wind_speed * 2.23694).toFixed(1);
             const windSpeedKph = (day.wind_speed * 3.6).toFixed(1);
             const cloudCover = `${day.clouds}%`;
             const humidity = `${day.humidity}%`;
             const precipitation = day.rain ? `${day.rain} mm` : day.snow ? `${day.snow} mm` : 'None';
             const pressure = `${day.pressure} hPa`;
+            const visibility = day.visibility ? `${(day.visibility / 1000).toFixed(1)} km` : 'N/A';
+            const weatherDescription = day.weather[0]?.description || 'N/A';
+            const weatherIcon = day.weather[0]?.icon
+              ? `<img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="${weatherDescription}" />`
+              : '';
 
             return `
               <div class="daily-forecast-item" data-index="${index}">
                 <p><strong class="forecast-date">${date}</strong></p>
+                ${weatherIcon}
+                <p>Description: ${weatherDescription}</p>
                 <p>Temp: ${dayTempC}°C / ${dayTempF}°F</p>
+                <p>Feels Like: ${feelsLikeC}°C / ${feelsLikeF}°F</p>
+                <p>Dew Point: ${dewPointC}°C / ${dewPointF}°F</p>
                 <p>Wind: ${windSpeedMph} mph / ${windSpeedKph} kph</p>
                 <p>Clouds: ${cloudCover}</p>
                 <p>Humidity: ${humidity}</p>
                 <p>Precipitation: ${precipitation}</p>
                 <p>Pressure: ${pressure}</p>
+                <p>Visibility: ${visibility}</p>
                 <button class="hourly-forecast-link" data-index="${index}">View Hourly Forecast</button>
               </div>
             `;
@@ -157,9 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return hourTimestamp >= startOfDay && hourTimestamp <= endOfDay;
     });
 
-    // Debug: Log filtered hourly data
-    console.log(`Filtered hourly data for day index ${dayIndex}:`, hourlyData);
-
     if (hourlyData.length === 0) {
       modalContent.innerHTML = `<p>No hourly forecast available for this date (beyond 72 hours).</p>`;
       console.warn('No hourly forecast data available for the selected day.');
@@ -169,27 +180,40 @@ document.addEventListener("DOMContentLoaded", () => {
           const time = new Date(hour.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
           const tempC = (hour.temp - 273.15).toFixed(1);
           const tempF = ((hour.temp - 273.15) * 9/5 + 32).toFixed(1);
+          const feelsLikeC = (hour.feels_like - 273.15).toFixed(1);
+          const feelsLikeF = ((hour.feels_like - 273.15) * 9/5 + 32).toFixed(1);
+          const dewPointC = (hour.dew_point - 273.15).toFixed(1);
+          const dewPointF = ((hour.dew_point - 273.15) * 9/5 + 32).toFixed(1);
           const windSpeedMph = (hour.wind_speed * 2.23694).toFixed(1);
           const windSpeedKph = (hour.wind_speed * 3.6).toFixed(1);
           const cloudCover = `${hour.clouds}%`;
           const humidity = `${hour.humidity}%`;
-          const pressure = `${hour.pressure} hPa`; // Add barometric pressure
+          const pressure = `${hour.pressure} hPa`;
+          const visibility = hour.visibility ? `${(hour.visibility / 1000).toFixed(1)} km` : 'N/A';
+          const weatherDescription = hour.weather[0]?.description || 'N/A';
+          const weatherIcon = hour.weather[0]?.icon
+            ? `<img src="https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png" alt="${weatherDescription}" />`
+            : '';
 
           return `
             <div class="hourly-forecast-item">
-              <p><strong>${time}</strong></p> <!-- Styled time -->
+              <p><strong>${time}</strong></p>
+              ${weatherIcon}
+              <p>Description: ${weatherDescription}</p>
               <p>Temp: ${tempC}°C / ${tempF}°F</p>
+              <p>Feels Like: ${feelsLikeC}°C / ${feelsLikeF}°F</p>
+              <p>Dew Point: ${dewPointC}°C / ${dewPointF}°F</p>
               <p>Wind: ${windSpeedMph} mph / ${windSpeedKph} kph</p>
               <p>Clouds: ${cloudCover}</p>
               <p>Humidity: ${humidity}</p>
-              <p>Pressure: ${pressure}</p> <!-- Display barometric pressure -->
+              <p>Pressure: ${pressure}</p>
+              <p>Visibility: ${visibility}</p>
             </div>
           `;
         })
         .join('');
       modalContent.innerHTML = hourlyHtml;
 
-      // Debug: Log modal content update
       console.log('Hourly forecast modal content updated successfully.');
     }
 
