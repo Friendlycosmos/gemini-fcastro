@@ -219,8 +219,10 @@ nav .hamburger {
   border-radius: 2px;
   pointer-events: none;
   z-index: 10;
-  transform: rotate(var(--angle, 45deg));
-  animation-duration: 1.656s !important; /* Even slower speed */
+  transform: rotate(var(--angle));
+  animation-duration: 1.656s !important; /* Reset to previous slowest speed */
+  animation-iteration-count: 1 !important;
+  animation-timing-function: linear !important;
 }
 
 .shooting-star.ltr {
@@ -236,7 +238,7 @@ nav .hamburger {
 @keyframes shooting-star-move-ltr {
   0% {
     opacity: 0;
-    transform: translate(0, 0) scaleY(1) rotate(var(--angle, 65deg));
+    transform: translate(0, 0) scaleY(1) rotate(var(--angle));
   }
   10% {
     opacity: 1;
@@ -246,15 +248,14 @@ nav .hamburger {
   }
   100% {
     opacity: 0;
-    /* Use --deltaY for randomized vertical offset */
-    transform: translate(100vw, var(--deltaY, 100px)) scaleY(0.5) rotate(var(--angle, 65deg));
+    transform: translate(var(--move-x), var(--move-y)) scaleY(0.5) rotate(var(--angle));
   }
 }
 
 @keyframes shooting-star-move-rtl {
   0% {
     opacity: 0;
-    transform: translate(0, 0) scaleY(1) rotate(var(--angle, -65deg));
+    transform: translate(0, 0) scaleY(1) rotate(var(--angle));
   }
   10% {
     opacity: 1;
@@ -264,15 +265,14 @@ nav .hamburger {
   }
   100% {
     opacity: 0;
-    /* Use --deltaY for randomized vertical offset */
-    transform: translate(-100vw, var(--deltaY, 100px)) scaleY(0.5) rotate(var(--angle, -65deg));
+    transform: translate(var(--move-x), var(--move-y)) scaleY(0.5) rotate(var(--angle));
   }
 }
 
 @keyframes shooting-star-move {
   0% {
     opacity: 0;
-    transform: translateY(0) scaleY(1) rotate(var(--angle, 45deg));
+    transform: translateY(0) scaleY(1) rotate(var(--angle));
   }
   10% {
     opacity: 1;
@@ -282,7 +282,7 @@ nav .hamburger {
   }
   100% {
     opacity: 0;
-    transform: translateY(300px) scaleY(0.5) rotate(var(--angle, 45deg));
+    transform: translateY(300px) scaleY(0.5) rotate(var(--angle));
   }
 }
 
