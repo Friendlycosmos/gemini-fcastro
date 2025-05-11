@@ -802,16 +802,26 @@ body.light-mode a:hover {
 
 /* Astronomical Events Section */
 #astro-events {
-  color: #000 !important; /* Force text color to black for visibility */
-  background-color: #f9f9f9; /* Light background for contrast */
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  background-color: #1a1a1a; /* Dark background */
+  color: #f0f0f0; /* Light text for readability */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  text-align: left; /* Align text to the left for better readability */
+  max-width: 100%; /* Ensure it fits within the container */
+  overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
+/* Headings inside the Astronomical Events window */
+#astro-events h3 {
+  color: #ffcc00; /* Accent color for headings */
+  margin-bottom: 15px;
+}
+
+/* Paragraphs inside the Astronomical Events window */
 #astro-events p {
-  margin: 0.5rem 0;
-  color: inherit; /* Ensure paragraphs inherit the forced text color */
+  margin-bottom: 10px; /* Add spacing between paragraphs */
+  line-height: 1.6; /* Improve readability with line spacing */
 }
 
 /* Modal Styling */
