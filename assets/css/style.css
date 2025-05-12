@@ -54,7 +54,7 @@ nav li {
 
 nav a {
   color: rgba(255, 255, 255, 0.85); /* Adjust link color for better contrast */
-  text-decoration: none;
+  text-decoration: none; /* Remove underline */
   font-size: 1rem;
   font-family: 'Exo 2', sans-serif;
   font-weight: bold; /* Match font weight */
@@ -116,6 +116,11 @@ nav a:hover {
   padding-bottom: 5px; /* Add space for the moving underscore effect */
 }
 
+/* Restore Patterns or Icons for Non-Color Indicators */
+#main-nav li a::before {
+  content: ''; /* Remove the bullet point indicator */
+}
+
 /* Moving Underscore Effect */
 #main-nav li a::after {
   content: ''; /* Create the underscore */
@@ -149,15 +154,12 @@ nav .hamburger {
     background-color: rgba(0, 0, 0, 0.9); /* Darker background for mobile menu */
     padding: 10px 0;
   }
-
   nav ul.show {
     display: flex; /* Show links when toggled */
   }
-
   nav .hamburger {
     display: block; /* Show hamburger menu on mobile */
   }
-
   nav li {
     margin: 10px 0; /* Add spacing between links in mobile view */
   }
@@ -493,12 +495,12 @@ nav .hamburger {
 
 /* Featured Merch Section */
 #shop {
-  background-color: rgba(60, 50, 0, 0.38); /* Darker yellow-brown, same opacity */
-  border: 1.5px solid rgba(255, 204, 0, 0.6); /* Yellow border */
+  background-color: rgba(70, 60, 20, 0.85); /* Lighter yellow-brown */
+  border: 1.5px solid rgba(255, 204, 0, 0.6); /* Slightly prominent border */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.7);
   padding: 30px;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.9); /* Ensure text contrast */
   text-align: center;
 }
 
@@ -624,7 +626,6 @@ section h2,
 
 /* Info Section Refinement */
 .info-section, .contact-section {
-  margin: 15px 0;
   padding: 30px;
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.8); /* Darker background */
@@ -639,12 +640,12 @@ section h2,
 
 /* Dashboard Section Refinement */
 .dashboard {
-  background-color: rgba(10, 30, 60, 0.38); /* Darker blue, same opacity */
-  border: 1.5px solid rgba(0, 123, 255, 0.5); /* Match border width to other sections */
+  background-color: rgba(20, 40, 80, 0.85); /* Lighter blue */
+  border: 1.5px solid rgba(0, 123, 255, 0.5); /* Slightly prominent border */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.7);
   padding: 30px;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.9); /* Ensure text contrast */
   text-align: center;
   box-sizing: border-box;
 }
@@ -701,13 +702,12 @@ section h2,
 
 /* About the Group Section */
 #community {
-  background-color: rgba(40, 10, 60, 0.38); /* Darker purple, same opacity */
-  border: 1.5px solid rgba(153, 51, 255, 0.6);
-  background-color: rgba(153, 51, 255, 0.08);
+  background-color: rgba(50, 20, 70, 0.85); /* Lighter purple */
+  border: 1.5px solid rgba(153, 51, 255, 0.6); /* Slightly prominent border */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.7);
   padding: 30px;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.9); /* Ensure text contrast */
   text-align: center;
 }
 
@@ -721,13 +721,12 @@ section h2,
 
 /* Contact Us Section */
 #contact {
-  background-color: rgba(60, 10, 30, 0.38); /* Darker pink, same opacity */
-  border: 1.5px solid rgba(255, 51, 153, 0.6);
-  background-color: rgba(255, 51, 153, 0.08);
+  background-color: rgba(60, 20, 40, 0.85); /* Lighter pink */
+  border: 1.5px solid rgba(255, 51, 153, 0.6); /* Slightly prominent border */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.7);
   padding: 30px;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.9); /* Ensure text contrast */
   text-align: center;
 }
 
@@ -743,13 +742,12 @@ section h2,
 
 /* Useful Links Section Styling */
 #useful-links {
-  background-color: rgba(0, 40, 30, 0.38); /* Darker teal, same opacity */
-  border: 1.5px solid rgba(0, 204, 153, 0.6);
-  background-color: rgba(0, 204, 153, 0.08);
+  background-color: rgba(10, 50, 40, 0.85); /* Lighter teal */
+  border: 1.5px solid rgba(0, 204, 153, 0.6); /* Slightly prominent border */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.7);
   padding: 30px;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.9); /* Ensure text contrast */
   text-align: center;
 }
 
@@ -1117,4 +1115,55 @@ body.light-mode a:hover {
   max-width: 220px;
   box-sizing: border-box;
   margin-bottom: 8px;
+}
+
+/* Color-Blind Mode Styles */
+body.color-blind-mode {
+  filter: grayscale(100%); /* Optional: Apply grayscale for better contrast */
+}
+
+body.color-blind-mode #main-nav li a {
+  text-decoration: underline; /* Add underline to links for better visibility */
+}
+
+body.color-blind-mode .dashboard-box h3,
+body.color-blind-mode .product h3 {
+  text-decoration: underline; /* Add underline to section titles */
+}
+
+body.color-blind-mode .dashboard-box,
+body.color-blind-mode .product {
+  border-style: dashed; /* Use dashed borders for better differentiation */
+}
+
+body.color-blind-mode .merch-card img {
+  border: 2px solid #ffcc00; /* Add a border to images for better focus */
+}
+
+/* Color-Blind Mode Button */
+#color-blind-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ffcc00; /* Match button styling */
+  color: black;
+  border: none;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-family: 'Exo 2', sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#color-blind-toggle:hover {
+  background-color: #ffd633; /* Slightly lighter shade on hover */
+  transform: translateY(-3px); /* Lift button on hover */
+}
+
+/* Ensure Navigation Buttons Stay Right-Justified */
+#main-nav {
+  margin-left: auto; /* Push navigation buttons to the right */
+  display: flex;
+  align-items: center;
 }

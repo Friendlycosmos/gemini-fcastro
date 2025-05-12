@@ -9,10 +9,11 @@
 </head>
 <body>
   <nav>
+    <button id="color-blind-toggle" aria-label="Toggle Color-Blind Mode" style="position: absolute; top: 10px; left: 10px;">Color-Blind Mode</button>
     <div class="nav-header">
       <div class="hamburger" onclick="toggleMenu()">☰</div>
     </div>
-    <ul id="main-nav">
+    <ul id="main-nav" style="margin-left: auto;">
       <li><a href="#shop">Shop</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#community">Community</a></li>
@@ -183,6 +184,18 @@
         fetchAstroEvents(defaultLat, defaultLon);
       } else {
         console.error('fetchAstroEvents is not defined. Ensure astro-events.js is loaded correctly.');
+      }
+
+      const toggleButton = document.getElementById('color-blind-toggle');
+      toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('color-blind-mode');
+        const isEnabled = document.body.classList.contains('color-blind-mode');
+        localStorage.setItem('colorBlindMode', isEnabled ? 'enabled' : 'disabled');
+      });
+
+      // Load saved preference
+      if (localStorage.getItem('colorBlindMode') === 'enabled') {
+        document.body.classList.add('color-blind-mode');
       }
     });
   </script>
